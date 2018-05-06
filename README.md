@@ -2,7 +2,7 @@
 
 A [Buildkite plugin](https://buildkite.com/docs/agent/v3/plugins) to commit and push the results of a command to a git repository.  
 
-[![Build status](https://badge.buildkite.com/6ba53099446c9851ed9befdcd1c5c0f00990a072cea6b07f6c.svg)](https://buildkite.com/the-dyrt/git-commit-buildkite-plugin)
+![Build status](https://badge.buildkite.com/6ba53099446c9851ed9befdcd1c5c0f00990a072cea6b07f6c.svg)
 
 ## Example
 
