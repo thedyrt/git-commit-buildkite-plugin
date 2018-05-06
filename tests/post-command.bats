@@ -19,6 +19,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -40,6 +42,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -61,6 +65,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -81,6 +87,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -101,6 +109,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -121,6 +131,8 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
   unstub git
 }
 
@@ -141,5 +153,23 @@ post_command_hook="$PWD/hooks/post-command"
   run "$post_command_hook"
 
   assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
+  unstub git
+}
+
+@test "Skip commit when there are no changes" {
+  export BUILDKITE_BUILD_NUMBER=1
+  export BUILDKITE_BRANCH=master
+
+  stub git \
+    "fetch origin master:master : echo fetch" \
+    "checkout master : echo checkout" \
+    "diff --quiet : true"
+
+  run "$post_command_hook"
+
+  assert_success
+  assert_output --partial "--- No changes to commit"
   unstub git
 }

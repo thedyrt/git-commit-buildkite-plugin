@@ -26,4 +26,6 @@ then
   git commit -m "${message}"
   echo "--- Pushing to origin"
   git push $remote $branch
+else
+  echo "--- No changes to commit"
 fi
