@@ -1,5 +1,5 @@
-name: change-directory
-description: Changes the working directory before running command
+name: git-commit
+description: A Buildkite plugin to commit and push the results of a command to a git repository.
 author: https://github.com/reidab
 requirements: []
 configuration:

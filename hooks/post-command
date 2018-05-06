@@ -18,11 +18,11 @@ fi
 
 git fetch $remote $branch:$branch
 git checkout $branch
+git add -A ${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}
 
-if ! git diff --quiet
+if ! git diff-index --quiet HEAD
 then
   echo "--- Committing changes"
-  git add -A ${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}
   git commit -m "${message}"
   echo "--- Pushing to origin"
   git push $remote $branch

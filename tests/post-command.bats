@@ -11,8 +11,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push origin master : echo push"
 
@@ -34,8 +34,8 @@ post_command_hook="$PWD/hooks/post-command"
     "config user.name \"Robot\" : echo config.name" \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push origin master : echo push"
 
@@ -57,8 +57,8 @@ post_command_hook="$PWD/hooks/post-command"
     "config user.email \"bot@example.com\" : echo config.email" \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push origin master : echo push"
 
@@ -79,8 +79,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch upstream master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push upstream master : echo push"
 
@@ -101,8 +101,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch origin code-orange:code-orange : echo fetch" \
     "checkout code-orange : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push origin code-orange : echo push"
 
@@ -123,8 +123,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Good Morning!\" : echo commit" \
     "push origin master : echo push"
 
@@ -145,8 +145,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : false" \
     "add -A app : echo add" \
+    "diff-index --quiet HEAD : false" \
     "commit -m \"Build #1\" : echo commit" \
     "push origin master : echo push"
 
@@ -165,7 +165,8 @@ post_command_hook="$PWD/hooks/post-command"
   stub git \
     "fetch origin master:master : echo fetch" \
     "checkout master : echo checkout" \
-    "diff --quiet : true"
+    "add -A . : echo add" \
+    "diff-index --quiet HEAD : true"
 
   run "$post_command_hook"
 
