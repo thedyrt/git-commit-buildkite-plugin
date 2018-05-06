@@ -16,16 +16,16 @@ then
   git config user.email "$BUILDKITE_PLUGIN_GIT_COMMIT_USER_EMAIL"
 fi
 
-git fetch $remote $branch:$branch
-git checkout $branch
-git add -A ${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}
+git fetch "$remote" "$branch:$branch"
+git checkout "$branch"
+git add -A "${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}"
 
 if ! git diff-index --quiet HEAD
 then
   echo "--- Committing changes"
   git commit -m "${message}"
   echo "--- Pushing to origin"
-  git push $remote $branch
+  git push "$remote" "$branch"
 else
   echo "--- No changes to commit"
 fi
