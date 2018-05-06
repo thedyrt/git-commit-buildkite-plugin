@@ -1,0 +1,21 @@
+name: change-directory
+description: Changes the working directory before running command
+author: https://github.com/reidab
+requirements: []
+configuration:
+  properties:
+    add:
+      type: string
+    branch:
+      type: string
+    message:
+      type: string
+    remote:
+      type: string
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string

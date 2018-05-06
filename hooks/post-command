@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+remote=${BUILDKITE_PLUGIN_GIT_COMMIT_REMOTE:-origin}
+branch=${BUILDKITE_PLUGIN_GIT_COMMIT_BRANCH:-${BUILDKITE_BRANCH}}
+message=${BUILDKITE_PLUGIN_GIT_COMMIT_MESSAGE:-"Build #${BUILDKITE_BUILD_NUMBER}"}
+
+if [[ -n ${BUILDKITE_PLUGIN_GIT_COMMIT_USER_NAME+x} ]]
+then
+  git config user.name "$BUILDKITE_PLUGIN_GIT_COMMIT_USER_NAME"
+fi
+
+if [[ -n ${BUILDKITE_PLUGIN_GIT_COMMIT_USER_EMAIL+x} ]]
+then
+  git config user.email "$BUILDKITE_PLUGIN_GIT_COMMIT_USER_EMAIL"
+fi
+
+git fetch $remote $branch:$branch
+git checkout $branch
+
+if ! git diff --quiet
+then
+  echo "--- Committing changes"
+  git add -A ${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}
+  git commit -m "${message}"
+  echo "--- Pushing to origin"
+  git push $remote $branch
+fi
