@@ -1,6 +1,6 @@
-# Git Commit Buildkite Plugin 
+# Git Commit Buildkite Plugin
 
-A [Buildkite plugin](https://buildkite.com/docs/agent/v3/plugins) to commit and push the results of a command to a git repository.  
+A [Buildkite plugin](https://buildkite.com/docs/agent/v3/plugins) to commit and push the results of a command to a git repository.
 
 ![Build status](https://badge.buildkite.com/6ba53099446c9851ed9befdcd1c5c0f00990a072cea6b07f6c.svg)
 
@@ -12,7 +12,7 @@ With no options, commits all changed/added files to `$BUILDKITE_BRANCH` and push
 steps:
   - command: make
     plugins:
-      thedyrt/git-commit#v0.1.0: ~
+      thedyrt/git-commit#v0.2.0: ~
 ```
 
 With all options customized:
@@ -21,7 +21,7 @@ With all options customized:
 steps:
   - command: make
     plugins:
-      thedyrt/git-commit#v0.1.0:
+      thedyrt/git-commit#v0.2.0:
         add: app/
         branch: my-branch
         message: "Updated data [$BUILDKITE_BUILD_NUMBER]"
@@ -39,8 +39,8 @@ steps:
 
 - **branch** (optional, defaults to `$BUILDKITE_BRANCH`)
 
-    The branch where changes will be committed. Since Buildkite runs builds in a detached HEAD state, this plugin will fetch and checkout the given branch prior to committing. 
-    
+    The branch where changes will be committed. Since Buildkite runs builds in a detached HEAD state, this plugin will fetch and checkout the given branch prior to committing.
+
 - **message** (optional, defaults to `Build #${BUILDKITE_BUILD_NUMBER}`)
 
     The commit message
@@ -48,7 +48,7 @@ steps:
 - **remote** (optional, defaults to `origin`)
 
     The git remote where changes will be pushed.
-    
+
 - **user.email** (optional)
 
     If given, will configure the git user email for the repo.

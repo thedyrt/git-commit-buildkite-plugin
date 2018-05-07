@@ -174,3 +174,15 @@ post_command_hook="$PWD/hooks/post-command"
   assert_output --partial "--- No changes to commit"
   unstub git
 }
+
+@test "Bails out when the command fails" {
+  export BUILDKITE_BUILD_NUMBER=1
+  export BUILDKITE_BRANCH=master
+
+  export BUILDKITE_COMMAND_EXIT_STATUS=127
+
+  run "$post_command_hook"
+
+  assert_success
+  assert_output --partial "--- Skipping git-commit"
+}

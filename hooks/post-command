@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+if [[ ${BUILDKITE_COMMAND_EXIT_STATUS:-0} != "0" ]]
+then
+  echo "--- Skipping git-commit because the command failed"
+  exit 0
+fi
+
 remote=${BUILDKITE_PLUGIN_GIT_COMMIT_REMOTE:-origin}
 branch=${BUILDKITE_PLUGIN_GIT_COMMIT_BRANCH:-${BUILDKITE_BRANCH}}
 message=${BUILDKITE_PLUGIN_GIT_COMMIT_MESSAGE:-"Build #${BUILDKITE_BUILD_NUMBER}"}
