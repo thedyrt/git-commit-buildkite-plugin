@@ -5,8 +5,8 @@ steps:
         run: tests
   - label: ":sparkles: Lint"
     plugins:
-      plugin-linter#v1.0.0:
-        name: thedyrt/git-commit
+      plugin-linter#v2.0.0:
+        id: thedyrt/git-commit
   - label: ":shell: Shellcheck"
     plugins:
       shellcheck#v1.0.1:
