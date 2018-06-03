@@ -8,6 +8,8 @@ configuration:
       type: string
     branch:
       type: string
+    create-branch:
+      type: boolean
     message:
       type: string
     remote:

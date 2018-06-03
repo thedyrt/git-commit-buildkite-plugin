@@ -114,6 +114,28 @@ post_command_hook="$PWD/hooks/post-command"
   unstub git
 }
 
+@test "Creates and pushes to a specific branch" {
+  export BUILDKITE_BUILD_NUMBER=1
+  export BUILDKITE_BRANCH=master
+
+  export BUILDKITE_PLUGIN_GIT_COMMIT_BRANCH=code-orange
+  export BUILDKITE_PLUGIN_GIT_COMMIT_CREATE_BRANCH=true
+
+  stub git \
+    "checkout -b code-orange : echo checkout" \
+    "add -A . : echo add" \
+    "diff-index --quiet HEAD : false" \
+    "commit -m \"Build #1\" : echo commit" \
+    "push origin code-orange : echo push"
+
+  run "$post_command_hook"
+
+  assert_success
+  assert_output --partial "--- Committing changes"
+  assert_output --partial "--- Pushing to origin"
+  unstub git
+}
+
 @test "Allows a custom message" {
   export BUILDKITE_BUILD_NUMBER=1
   export BUILDKITE_BRANCH=master

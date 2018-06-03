@@ -22,8 +22,13 @@ then
   git config user.email "$BUILDKITE_PLUGIN_GIT_COMMIT_USER_EMAIL"
 fi
 
-git fetch "$remote" "$branch:$branch"
-git checkout "$branch"
+if [[ ${BUILDKITE_PLUGIN_GIT_COMMIT_CREATE_BRANCH:-false} = "true" ]]
+then
+  git checkout -b "$branch"
+else
+  git fetch "$remote" "$branch:$branch"
+  git checkout "$branch"
+fi
 git add -A "${BUILDKITE_PLUGIN_GIT_COMMIT_ADD:-.}"
 
 if ! git diff-index --quiet HEAD
