@@ -12,7 +12,7 @@ With no options, commits all changed/added files to `$BUILDKITE_BRANCH` and push
 steps:
   - command: make
     plugins:
-      thedyrt/git-commit#v0.2.0: ~
+      thedyrt/git-commit#v0.3.0: ~
 ```
 
 With all options customized:
@@ -21,9 +21,10 @@ With all options customized:
 steps:
   - command: make
     plugins:
-      thedyrt/git-commit#v0.2.0:
+      thedyrt/git-commit#v0.3.0:
         add: app/
         branch: my-branch
+        create-branch: true
         message: "Updated data [$BUILDKITE_BUILD_NUMBER]"
         remote: upstream
         user:
