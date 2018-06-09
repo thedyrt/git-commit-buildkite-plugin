@@ -39,7 +39,11 @@ steps:
 
 - **branch** (optional, defaults to `$BUILDKITE_BRANCH`)
 
-    The branch where changes will be committed. Since Buildkite runs builds in a detached HEAD state, this plugin will fetch and checkout the given branch prior to committing.
+    The branch where changes will be committed. Since Buildkite runs builds in a detached HEAD state, this plugin will fetch and checkout the given branch prior to committing. Unless we're creating a new branch. See `create-branch` below.
+
+- **create-branch** (optional, defaults to `false`)
+
+    When set to true the branch will be created, rather than fetched from the remote.
 
 - **message** (optional, defaults to `Build #${BUILDKITE_BUILD_NUMBER}`)
 
